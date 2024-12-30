@@ -28,6 +28,7 @@ include('../includes/home-button.php'); ?>
         align-items: center;
         height: 100vh;
         margin: 0;
+        padding: 100px 0 0 0;
     }
     main {
         background-color: #fff;

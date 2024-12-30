@@ -2,6 +2,7 @@
 -- Create Categories Table
 CREATE TABLE Categories (
     category_id INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
     Created_Date DATE NOT NULL,
     Last_Updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -43,6 +44,7 @@ CREATE TABLE Product (
 -- Create Lens Type Table
 CREATE TABLE Lens_Type (
     lens_type_id INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
     Thickness DECIMAL(5, 2),
     scratch_resistant BOOLEAN,
     is_anti_reflective BOOLEAN,
@@ -82,9 +84,9 @@ CREATE TABLE User (
 );
 
 -- Insert statements for Categories
-INSERT INTO Categories (Created_Date, Last_Updated) VALUES
-('2023-01-01', '2023-01-01'),
-('2023-02-01', '2023-02-01');
+INSERT INTO Categories (Name, Created_Date, Last_Updated) VALUES
+('Sunglasses', '2023-01-01', '2023-01-01'),
+('Eyeglasses', '2023-02-01', '2023-02-01');
 
 -- Insert statements for Frame Material
 INSERT INTO Frame_Material (Name, Weight, F_Color, Flexibility) VALUES
@@ -97,9 +99,9 @@ INSERT INTO Brand (Name, Origin, Rep_Rating, Warranty_period) VALUES
 ('Oakley', 'USA', 4.7, 24);
 
 -- Insert statements for Lens Type
-INSERT INTO Lens_Type (Thickness, scratch_resistant, is_anti_reflective, is_UV, L_Color) VALUES
-(1.5, TRUE, TRUE, TRUE, 'Clear'),
-(1.7, TRUE, FALSE, TRUE, 'Blue');
+INSERT INTO Lens_Type (Name, Thickness, scratch_resistant, is_anti_reflective, is_UV, L_Color) VALUES
+('Standard', 1.5, TRUE, TRUE, TRUE, 'Clear'),
+('Blue Light', 1.7, TRUE, FALSE, TRUE, 'Blue');
 
 -- Insert statements for Face Shapes
 INSERT INTO Face_Shapes (Name) VALUES
@@ -120,3 +122,55 @@ INSERT INTO Product_Lens (product_id, lens_type_id) VALUES
 INSERT INTO Product_FaceShape (product_id, face_shape_id) VALUES
 (1, 1),
 (2, 2);
+-- Additional Insert statements for Categories
+INSERT INTO Categories (Name, Created_Date, Last_Updated) VALUES
+('Sports', '2023-05-01', '2023-05-01'),
+('Fashion', '2023-06-01', '2023-06-01'),
+('Reading', '2023-07-01', '2023-07-01'),
+('Safety', '2023-08-01', '2023-08-01'),
+('Kids', '2023-09-01', '2023-09-01');
+
+-- Additional Insert statements for Frame Material
+INSERT INTO Frame_Material (Name, Weight, F_Color, Flexibility) VALUES
+('Titanium', 1.2, 'Gray', 'High'),
+('Wood', 1.8, 'Brown', 'Low'),
+('Carbon Fiber', 1.3, 'Black', 'High'),
+('Acetate', 1.6, 'Tortoise', 'Medium'),
+('Aluminum', 2.1, 'Silver', 'Medium');
+
+-- Additional Insert statements for Brand
+INSERT INTO Brand (Name, Origin, Rep_Rating, Warranty_period) VALUES
+('Gucci', 'Italy', 4.8, 24),
+('Prada', 'Italy', 4.6, 24),
+('Versace', 'Italy', 4.7, 24),
+('Armani', 'Italy', 4.5, 24),
+('Dolce & Gabbana', 'Italy', 4.4, 24);
+
+-- Additional Insert statements for Lens Type
+INSERT INTO Lens_Type (Name, Thickness, scratch_resistant, is_anti_reflective, is_UV, L_Color) VALUES
+('Polarized', 1.6, TRUE, TRUE, TRUE, 'Gray'),
+('Photochromic', 1.5, TRUE, TRUE, TRUE, 'Clear'),
+('High Index', 1.8, TRUE, TRUE, TRUE, 'Clear'),
+('Trivex', 1.4, TRUE, TRUE, TRUE, 'Clear'),
+('Polycarbonate', 1.3, TRUE, TRUE, TRUE, 'Clear');
+
+-- Additional Insert statements for Face Shapes
+INSERT INTO Face_Shapes (Name) VALUES
+('Oval'),
+('Heart'),
+('Diamond'),
+('Rectangle'),
+('Triangle');
+
+-- Additional Insert statements for Product
+INSERT INTO Product (Name, Status, Price, Launch_Date, Stock_Quantity, category_id, frame_material_id, brand_id) VALUES
+('Sporty', 'Available', 180.00, '2023-05-01', 150, 3, 3, 3),
+('Fashionista', 'Available', 200.00, '2023-06-01', 120, 4, 4, 4),
+('Reader', 'Available', 100.00, '2023-07-01', 80, 5, 5, 5),
+('Safety First', 'Available', 90.00, '2023-08-01', 60, 6, 6, 6),
+('Kids Fun', 'Available', 70.00, '2023-09-01', 50, 7, 7, 7),
+('Classic', 'Available', 130.00, '2023-10-01', 110, 1, 1, 1),
+('Modern', 'Available', 140.00, '2023-11-01', 90, 2, 2, 2),
+('Elegant', 'Available', 160.00, '2023-12-01', 70, 3, 3, 3),
+('Trendy', 'Available', 170.00, '2024-01-01', 100, 4, 4, 4),
+('Vintage', 'Available', 150.00, '2024-02-01', 80, 5, 5, 5);
