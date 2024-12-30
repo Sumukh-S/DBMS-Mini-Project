@@ -25,7 +25,7 @@
         background: linear-gradient(to right, #ffecd2 0%, #77aaff 100%);
         color: #333;
         margin: 0;
-        padding: 0;
+        padding: 100px 0 0 0;
     }
 
     main {

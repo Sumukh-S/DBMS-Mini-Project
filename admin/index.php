@@ -15,7 +15,7 @@ include '../includes/footer.php';
             font-family: Arial, sans-serif;
             background: linear-gradient(to right, #ffecd2 0%, #77aaff 100%);
             margin: 0;
-            padding: 0;
+            padding: 100px 0 0 0;
         }
     main {
         display: flex;
