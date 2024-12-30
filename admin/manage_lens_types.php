@@ -4,12 +4,13 @@ include('../includes/home-button.php');
 
 // Add Lens Type
 if (isset($_POST['add_lens_type'])) {
+    $name = $_POST['Name'];
     $thickness = $_POST['Thickness'];
     $scratch_resistant = isset($_POST['scratch_resistant']) ? 1 : 0;
     $is_anti_reflective = isset($_POST['is_anti_reflective']) ? 1 : 0;
     $is_UV = isset($_POST['is_UV']) ? 1 : 0;
     $color = $_POST['L_Color'];
-    $query = "INSERT INTO Lens_Type (Thickness, scratch_resistant, is_anti_reflective, is_UV, L_Color) VALUES ('$thickness', '$scratch_resistant', '$is_anti_reflective', '$is_UV', '$color')";
+    $query = "INSERT INTO Lens_Type (Name, Thickness, scratch_resistant, is_anti_reflective, is_UV, L_Color) VALUES ('$name', '$thickness', '$scratch_resistant', '$is_anti_reflective', '$is_UV', '$color')";
     mysqli_query($conn, $query);
 }
 
@@ -23,12 +24,13 @@ if (isset($_GET['remove'])) {
 // Edit Lens Type
 if (isset($_POST['edit_lens_type'])) {
     $id = $_POST['id'];
+    $name = $_POST['Name'];
     $thickness = $_POST['Thickness'];
     $scratch_resistant = isset($_POST['scratch_resistant']) ? 1 : 0;
     $is_anti_reflective = isset($_POST['is_anti_reflective']) ? 1 : 0;
     $is_UV = isset($_POST['is_UV']) ? 1 : 0;
     $color = $_POST['L_Color'];
-    $query = "UPDATE Lens_Type SET Thickness = '$thickness', scratch_resistant = '$scratch_resistant', is_anti_reflective = '$is_anti_reflective', is_UV = '$is_UV', L_Color = '$color' WHERE lens_type_id = $id";
+    $query = "UPDATE Lens_Type SET name = '$name', Thickness = '$thickness', scratch_resistant = '$scratch_resistant', is_anti_reflective = '$is_anti_reflective', is_UV = '$is_UV', L_Color = '$color' WHERE lens_type_id = $id";
     mysqli_query($conn, $query);
 }
 
@@ -156,36 +158,26 @@ $result = mysqli_query($conn, $query);
             <h1>Manage Lens Types</h1>
 
             <form method="POST" action="" style="background: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-                  <label style="display: block; margin-bottom: 10px;">
-
+                <input type="text" name="Name" placeholder="Name" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                <input type="text" name="Thickness" placeholder="Thickness" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                <label style="display: block; margin-bottom: 10px;">
                     <input type="checkbox" name="scratch_resistant"> Scratch Resistant
-
-                 </label>
-
-                  <label style="display: block; margin-bottom: 10px;">
-
-                       <input type="checkbox" name="is_anti_reflective"> Anti Reflective
-
-                    </label>
-
-                     <label style="display: block; margin-bottom: 10px;">
-
-                          <input type="checkbox" name="is_UV"> UV Protection
-
-                       </label>
-
-                        <input type="text" name="L_Color" placeholder="Color" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px;">
-
-                         <button type="submit" name="add_lens_type" style="background: #333; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Add</button>
-
-                <input type="text" name="L_Color" placeholder="Color" required>
-                <button type="submit" name="add_lens_type">Add</button>
+                </label>
+                <label style="display: block; margin-bottom: 10px;">
+                    <input type="checkbox" name="is_anti_reflective"> Anti Reflective
+                </label>
+                <label style="display: block; margin-bottom: 10px;">
+                    <input type="checkbox" name="is_UV"> UV Protection
+                </label>
+                <input type="text" name="L_Color" placeholder="Color" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                <button type="submit" name="add_lens_type" style="background: #333; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Add</button>
             </form>
 
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Name</th>
                         <th>Thickness</th>
                         <th>Scratch Resistant</th>
                         <th>Anti Reflective</th>
@@ -198,6 +190,7 @@ $result = mysqli_query($conn, $query);
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                         <tr>
                             <td><?php echo $row['lens_type_id']; ?></td>
+                            <td><?php echo $row['Name']; ?></td>
                             <td><?php echo $row['Thickness']; ?></td>
                             <td><?php echo $row['scratch_resistant'] ? 'Yes' : 'No'; ?></td>
                             <td><?php echo $row['is_anti_reflective'] ? 'Yes' : 'No'; ?></td>
@@ -207,6 +200,7 @@ $result = mysqli_query($conn, $query);
                                 <a href="?remove=<?php echo $row['lens_type_id']; ?>" style="text-decoration: none; color: #e8491d;">Remove</a>
                                 <form method="POST" action="" style="display:inline;">
                                     <input type="hidden" name="id" value="<?php echo $row['lens_type_id']; ?>">
+                                    <input type="text" name="Name" value="<?php echo $row['Name']; ?>" required>
                                     <input type="text" name="Thickness" value="<?php echo $row['Thickness']; ?>" required>
                                     <label>
                                         <input type="checkbox" name="scratch_resistant" <?php echo $row['scratch_resistant'] ? 'checked' : ''; ?>> Scratch Resistant

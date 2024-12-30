@@ -2,10 +2,11 @@
 include('../public/sql/config.php');
 include('../includes/home-button.php');
 
-// Add Category
+// Add Category with Name
 if (isset($_POST['add_category'])) {
     $created_date = $_POST['Created_Date'];
-    $query = "INSERT INTO Categories (Created_Date) VALUES ('$created_date')";
+    $name = $_POST['Name'];
+    $query = "INSERT INTO Categories (Created_Date, Name) VALUES ('$created_date', '$name')";
     mysqli_query($conn, $query);
 }
 
@@ -16,11 +17,12 @@ if (isset($_GET['remove'])) {
     mysqli_query($conn, $query);
 }
 
-// Edit Category
+// Edit Category with Name
 if (isset($_POST['edit_category'])) {
     $id = $_POST['id'];
     $created_date = $_POST['Created_Date'];
-    $query = "UPDATE Categories SET Created_Date = '$created_date' WHERE category_id = $id";
+    $name = $_POST['Name'];
+    $query = "UPDATE Categories SET Created_Date = '$created_date', Name = '$name' WHERE category_id = $id";
     mysqli_query($conn, $query);
 }
 
@@ -93,7 +95,7 @@ $result = mysqli_query($conn, $query);
             margin-top: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .form-container input[type="date"] {
+        .form-container input[type="date"], .form-container input[type="text"] {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -156,6 +158,7 @@ $result = mysqli_query($conn, $query);
         <div class="form-container">
             <form method="POST" action="">
                 <input type="date" name="Created_Date" placeholder="Created Date" required>
+                <input type="text" name="Name" placeholder="Category Name" required>
                 <button type="submit" name="add_category">Add Category</button>
             </form>
         </div>
@@ -165,6 +168,7 @@ $result = mysqli_query($conn, $query);
                 <tr>
                     <th>ID</th>
                     <th>Created Date</th>
+                    <th>Name</th>
                     <th>Last Updated</th>
                     <th>Actions</th>
                 </tr>
@@ -174,12 +178,14 @@ $result = mysqli_query($conn, $query);
                     <tr>
                         <td><?php echo $row['category_id']; ?></td>
                         <td><?php echo $row['Created_Date']; ?></td>
+                        <td><?php echo $row['Name']; ?></td>
                         <td><?php echo $row['Last_Updated']; ?></td>
                         <td>
                             <a href="?remove=<?php echo $row['category_id']; ?>" style="text-decoration: none; color: #e8491d;">Remove</a>
                             <form method="POST" action="" style="display:inline;">
                                 <input type="hidden" name="id" value="<?php echo $row['category_id']; ?>">
                                 <input type="date" name="Created_Date" value="<?php echo $row['Created_Date']; ?>" required>
+                                <input type="text" name="Name" value="<?php echo $row['Name']; ?>" required>
                                 <button type="submit" name="edit_category">Edit</button>
                             </form>
                         </td>

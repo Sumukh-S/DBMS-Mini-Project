@@ -62,33 +62,39 @@ include '../includes/footer.php';
     .card a:hover {
         text-decoration: underline;
     }
+    .card img {
+        width: 100%;
+        height: 150px;
+        object-fit: contain;
+        display: block;
+    }
 </style>
 
 </head>
 <body>
     <main>
         <div class="card">
-            <img src="../images/products.jpg" alt="Manage Products">
+            <img src="../public/images/manage_product.png" alt="Manage Products">
             <h2>Manage Products</h2>
             <a href="manage_products.php">Go to Products</a>
         </div>
         <div class="card">
-            <img src="../images/categories.jpg" alt="Manage Categories">
+            <img src="../public/images/manage_category.png" alt="Manage Categories">
             <h2>Manage Categories</h2>
             <a href="manage_categories.php">Go to Categories</a>
         </div>
         <div class="card">
-            <img src="../images/brands.jpg" alt="Manage Brands">
+            <img src="../public/images/manage_brands.png" alt="Manage Brands">
             <h2>Manage Brands</h2>
             <a href="manage_brands.php">Go to Brands</a>
         </div>
         <div class="card">
-            <img src="../images/frame_materials.jpg" alt="Manage Frame Materials">
+            <img src="../public/images/manage_materials.png" alt="Manage Frame Materials">
             <h2>Manage Frame Materials</h2>
             <a href="manage_frame_materials.php">Go to Frame Materials</a>
         </div>
         <div class="card">
-        <img src="../images/lens_types.jpg" alt="Manage Lens Types">
+        <img src="../public/images/manage_lens.png" alt="Manage Lens Types">
         <h2>Manage Lens Types</h2>
         <a href="manage_lens_types.php">Go to Lens Types</a>
     </div>
