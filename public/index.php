@@ -1,6 +1,6 @@
 <?php include '../includes/header.php'; ?>
 <main>
-   <h1>Welcome to Our Eyewear Store</h1>
+   <h1>Welcome to Our Eyewear Inventory</h1>
    <p>Check out our latest products!</p>
 
    <!-- Fetch and display products from database -->
@@ -17,6 +17,10 @@
        echo "</div>";
    }
    ?>
+   <br>
+   <br>
+   <br>
+   <br>
 </main>
 <?php include '../includes/footer.php'; ?>
 <style>

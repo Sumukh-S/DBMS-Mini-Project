@@ -55,7 +55,9 @@
 </head>
 <body>
 <header>
-    <div class="logo">Eyewear Store</div>
+    <div class="logo">
+        <img src="../public/images/eyewear.png" alt="Eyewear Store Logo" style="height: 40px;">
+    </div>
     <nav>
         <ul>
             <li><a href="../public/index.php">Home</a></li>

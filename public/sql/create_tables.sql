@@ -77,10 +77,10 @@ CREATE TABLE Product_FaceShape (
 );
 
 CREATE TABLE User (
-    UserId INT PRIMARY KEY NOT NULL,
-    Name text NOT NULL,
-    Email text NOT NULL,
-    password text NOT NULL
+    UserId INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
 );
 
 -- Insert statements for Categories
@@ -174,3 +174,19 @@ INSERT INTO Product (Name, Status, Price, Launch_Date, Stock_Quantity, category_
 ('Elegant', 'Available', 160.00, '2023-12-01', 70, 3, 3, 3),
 ('Trendy', 'Available', 170.00, '2024-01-01', 100, 4, 4, 4),
 ('Vintage', 'Available', 150.00, '2024-02-01', 80, 5, 5, 5);
+
+
+-- Trigger name: update_last_updated
+-- Table: Categories
+-- Time: BEFORE
+-- Event: UPDATE
+-- Definition: Sets the Last_Updated column to the current timestamp before updating a row in the Categories table.
+-- Definer: The user who creates the trigger
+-- Trigger to update Last_Updated column in Categories table
+DELIMITER //
+CREATE TRIGGER update_last_updated
+BEFORE UPDATE ON Categories
+FOR EACH ROW
+BEGIN
+    SET NEW.Last_Updated = CURRENT_TIMESTAMP;
+END;
